@@ -1,4 +1,4 @@
-# Modul 321: Practical exam project
+# Module 321: Practical exam project
 
 ## Prerequisites
 
