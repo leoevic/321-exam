@@ -5,7 +5,21 @@
 - Joy-Pi with installed operating system
 - Docker is installed on the Joy-Pi
 
+## Environment variables
+
+Before you can run your project, you first need to set the environment variables. If the environment variables are unset, the application will use its default environment variables. The following table lists the possible environment variables and their default values:
+
+| Variable | Default value |
+| --- | --- |
+| `MQTT_HOST` | `10.5.61.199` |
+| `MQTT_PORT` | `1883` |
+| `SERVER_ID` | `7` |
+
+You can set your desired values under `services/webserver/environment` in the `docker-compose.yaml` file.
+
 ## Running the project
+
+Before running the project, please make sure that you have set your environment variables. See [Environment Variables](#environment-variables).
 
 To run the project, just type in the following command:
 
@@ -38,3 +52,6 @@ Sample message:
 ```
 Last request: 2026-09-28T08:47:49
 ```
+
+## Author
+Leonardo Evic ([Website](https://www.leonardoevic.com/)) ([GitHub](https://github.com/leoevic))
