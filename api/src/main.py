@@ -16,9 +16,9 @@ host = "0.0.0.0"
 port = 5000
 
 # Get environment stuff
-mqtt_host = os.getenv("MQTT_HOST")
-mqtt_port = int(os.getenv("MQTT_PORT"))
-server_id = os.getenv("SERVER_ID")
+mqtt_host = os.getenv("MQTT_HOST", "10.5.61.199")
+mqtt_port = int(os.getenv("MQTT_PORT", "1883"))
+server_id = os.getenv("SERVER_ID", "7")
 
 def on_connect(client, userdata, flags, reason_code, properites):
     print(f"Connected to MQTT Broker with result {reason_code}")
