@@ -15,6 +15,11 @@ light_sensor = LightSensor()
 host = "0.0.0.0"
 port = 5000
 
+# Get environment stuff
+mqtt_host = os.getenv("MQTT_HOST")
+mqtt_port = int(os.getenv("MQTT_PORT"))
+server_id = os.getenv("SERVER_ID")
+
 def on_connect(client, userdata, flags, reason_code, properites):
     print(f"Connected to MQTT Broker with result {reason_code}")
 
@@ -24,7 +29,7 @@ def on_message(client, userdata, message):
 mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 mqtt_client.on_connect = on_connect
 mqtt_client.on_message = on_message
-mqtt_client.connect("10.5.61.199", 1883, 60)
+mqtt_client.connect(mqtt_host, mqtt_port, 60)
 
 sleep(1)
 
@@ -65,7 +70,7 @@ class Server(BaseHTTPRequestHandler):
     def do_GET(self):
         # Send MQTT
         now = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-        mqtt_client.publish("raspi/7/http/request", f"Last request: {now}", qos=2)
+        mqtt_client.publish(f"raspi/{server_id}/http/request", f"Last request: {now}", qos=2)
 
         if self.path == "/api/sensors":
             air = air_sensor.readAir()

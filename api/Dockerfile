@@ -20,4 +20,10 @@ RUN pip install smbus paho-mqtt rpi-lgpio
 
 RUN pip install dht11 --no-deps
 
+ENV MQTT_HOST="10.5.61.199"
+
+ENV MQTT_PORT="1883"
+
+ENV SERVER_ID="7"
+
 WORKDIR /usr/src/app

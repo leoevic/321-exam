@@ -7,4 +7,8 @@ services:
       - './api/src:/usr/src/app'
     ports:
       - 5000:5000
+    environment:
+      MQTT_HOST: '10.5.61.199'
+      MQTT_PORT: 1883
+      SERVER_ID: 7
     restart: always
