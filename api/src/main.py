@@ -2,14 +2,12 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from time import sleep
 from air_sensor import AirSensor
 from light_sensor import LightSensor
-import threading
 import json
 import os
 import mimetypes
-import textwrap
+from datetime import datetime
 
 import paho.mqtt.client as mqtt
-import paho.mqtt.subscribe as subscribe
 
 air_sensor = AirSensor()
 light_sensor = LightSensor()
@@ -66,7 +64,8 @@ class Server(BaseHTTPRequestHandler):
 
     def do_GET(self):
         # Send MQTT
-        mqtt_client.publish("raspi/7/http/request", "request created", qos=2)
+        now = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        mqtt_client.publish("raspi/7/http/request", f"Last request: {now}", qos=2)
 
         if self.path == "/api/sensors":
             air = air_sensor.readAir()
